@@ -1,0 +1,30 @@
+<RCC>
+    <qresource prefix="/images">
+        <file>images/about.png</file>
+        <file>images/delete.png</file>
+        <file>images/delete_table_row.png</file>
+        <file>images/edit-redo.png</file>
+        <file>images/edit-undo.png</file>
+        <file>images/file.png</file>
+        <file>images/help.png</file>
+        <file>images/insert_table_row.png</file>
+        <file>images/new_project.png</file>
+        <file>images/open.png</file>
+        <file>images/Pause.png</file>
+        <file>images/refresh.png</file>
+        <file>images/report--pencil.png</file>
+        <file>images/save.png</file>
+        <file>images/saveas.png</file>
+        <file>images/script_code.png</file>
+        <file>images/start.png</file>
+        <file>images/stepbystep.png</file>
+        <file>images/Stop.png</file>
+        <file>images/table-delete-column.png</file>
+        <file>images/table-delete-row.png</file>
+        <file>images/table-insert-column.png</file>
+        <file>images/table-insert-row.png</file>
+        <file>images/task--arrow.png</file>
+        <file>images/textfield_rename.png</file>
+        <file>images/tick.png</file>
+    </qresource>
+</RCC>
