@@ -8,19 +8,19 @@ MainWindow::MainWindow(QWidget *parent) :
     m_fs_model(0)
 {
     ui->setupUi(this);
-    m_fs_model=new FunctionalSchemeModel();
+    /*m_fs_model=new FunctionalSchemeModel();
     ui->tableView->setModel(m_fs_model);
     ui->tableView->horizontalHeader()->setSectionsMovable(true);
     m_alphabet=new AlphabetModel(m_fs_model);
-    ui->tableView_2->setModel(m_alphabet);
-    connect(m_fs_model,&FunctionalSchemeModel::cellAboutToBeUpdated,this,&MainWindow::onCellAboutToBeUpdated);
+    ui->tableView_2->setModel(m_alphabet);*/
+    //connect(m_fs_model,&FunctionalSchemeModel::cellAboutToBeUpdated,this,&MainWindow::onCellAboutToBeUpdated);
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
 }
-
+/*
 void MainWindow::on_pushButton_clicked()
 {
     m_fs_model->insertCharColumn(m_code);
@@ -62,4 +62,4 @@ void MainWindow::on_pushButton_5_clicked()
 void MainWindow::on_pushButton_6_clicked()
 {
     m_undo_stack.redo();
-}
+}*/

@@ -24,3 +24,32 @@ void UpdateCell::redo()
         return;
     m_model->setData(index,m_text,Qt::DisplayRole);
 }
+
+
+
+RemoveFSColumn::RemoveFSColumn(QChar c, FunctionalSchemeModel *model, int id)
+    : m_id(id)
+    , m_model(model)
+    , m_char(c)
+{
+
+}
+
+void RemoveFSColumn::undo()
+{
+
+}
+
+void RemoveFSColumn::redo()
+{
+
+}
+
+int RemoveFSColumn::id() const
+{
+    return m_id;
+}
+
+bool RemoveFSColumn::mergeWith(const QUndoCommand *other)
+{
+}

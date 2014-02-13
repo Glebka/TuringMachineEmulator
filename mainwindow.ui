@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>578</width>
-    <height>541</height>
+    <width>632</width>
+    <height>432</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,10 +17,10 @@
    <widget class="QTableView" name="tableView">
     <property name="geometry">
      <rect>
-      <x>0</x>
-      <y>1</y>
-      <width>581</width>
-      <height>201</height>
+      <x>50</x>
+      <y>150</y>
+      <width>151</width>
+      <height>101</height>
      </rect>
     </property>
     <property name="dragEnabled">
@@ -33,92 +33,14 @@
      <bool>false</bool>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton">
-    <property name="geometry">
-     <rect>
-      <x>60</x>
-      <y>240</y>
-      <width>92</width>
-      <height>27</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Add column</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="pushButton_2">
-    <property name="geometry">
-     <rect>
-      <x>170</x>
-      <y>240</y>
-      <width>92</width>
-      <height>27</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Add row</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="pushButton_3">
-    <property name="geometry">
-     <rect>
-      <x>290</x>
-      <y>240</y>
-      <width>92</width>
-      <height>27</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Remove rows</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="pushButton_4">
-    <property name="geometry">
-     <rect>
-      <x>400</x>
-      <y>240</y>
-      <width>92</width>
-      <height>27</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Remove cols</string>
-    </property>
-   </widget>
    <widget class="QTableView" name="tableView_2">
     <property name="geometry">
      <rect>
-      <x>20</x>
-      <y>280</y>
-      <width>241</width>
-      <height>192</height>
+      <x>240</x>
+      <y>211</y>
+      <width>201</width>
+      <height>151</height>
      </rect>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="pushButton_5">
-    <property name="geometry">
-     <rect>
-      <x>310</x>
-      <y>290</y>
-      <width>92</width>
-      <height>27</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>undo</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="pushButton_6">
-    <property name="geometry">
-     <rect>
-      <x>310</x>
-      <y>330</y>
-      <width>92</width>
-      <height>27</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>redo</string>
     </property>
    </widget>
   </widget>
@@ -127,10 +49,83 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>578</width>
+     <width>632</width>
      <height>23</height>
     </rect>
    </property>
+   <widget class="QMenu" name="menuAfqk">
+    <property name="title">
+     <string>Файл</string>
+    </property>
+    <addaction name="createProject"/>
+    <addaction name="openProject"/>
+    <addaction name="recentProjects"/>
+    <addaction name="separator"/>
+    <addaction name="saveProject"/>
+    <addaction name="saveProjectAs"/>
+    <addaction name="separator"/>
+    <addaction name="closeProject"/>
+    <addaction name="separator"/>
+    <addaction name="quitProg"/>
+   </widget>
+   <widget class="QMenu" name="menu_3">
+    <property name="title">
+     <string>Запуск и отладка</string>
+    </property>
+    <addaction name="runMachine"/>
+    <addaction name="separator"/>
+    <addaction name="startDebug"/>
+    <addaction name="stopMachine"/>
+    <addaction name="separator"/>
+    <addaction name="nextState"/>
+   </widget>
+   <widget class="QMenu" name="menu_4">
+    <property name="title">
+     <string>Справка</string>
+    </property>
+    <addaction name="helpContents"/>
+    <addaction name="aboutProg"/>
+   </widget>
+   <widget class="QMenu" name="menu_5">
+    <property name="title">
+     <string>Правка</string>
+    </property>
+    <widget class="QMenu" name="menu_6">
+     <property name="title">
+      <string>Функциональная схема</string>
+     </property>
+     <addaction name="addColumn"/>
+     <addaction name="removeColumn"/>
+     <addaction name="separator"/>
+     <addaction name="addRow"/>
+     <addaction name="removeRow"/>
+     <addaction name="separator"/>
+     <addaction name="insertCommand"/>
+    </widget>
+    <widget class="QMenu" name="menu_7">
+     <property name="title">
+      <string>Лента</string>
+     </property>
+     <addaction name="action_46"/>
+     <addaction name="action_48"/>
+     <addaction name="separator"/>
+     <addaction name="action_51"/>
+     <addaction name="action_52"/>
+    </widget>
+    <addaction name="undoAction"/>
+    <addaction name="redoAction"/>
+    <addaction name="separator"/>
+    <addaction name="menu_6"/>
+    <addaction name="menu_7"/>
+    <addaction name="separator"/>
+    <addaction name="cutAction"/>
+    <addaction name="copyAction"/>
+    <addaction name="pasteAction"/>
+   </widget>
+   <addaction name="menuAfqk"/>
+   <addaction name="menu_5"/>
+   <addaction name="menu_3"/>
+   <addaction name="menu_4"/>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
    <attribute name="toolBarArea">
@@ -141,8 +136,267 @@
    </attribute>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
+  <action name="createProject">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/images/images/new_project.png</normaloff>:/images/images/new_project.png</iconset>
+   </property>
+   <property name="text">
+    <string>Создать проект...</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+N</string>
+   </property>
+  </action>
+  <action name="openProject">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/images/images/open.png</normaloff>:/images/images/open.png</iconset>
+   </property>
+   <property name="text">
+    <string>Открыть проект...</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+O</string>
+   </property>
+  </action>
+  <action name="recentProjects">
+   <property name="text">
+    <string>Недавние проекты</string>
+   </property>
+  </action>
+  <action name="saveProject">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/images/images/save.png</normaloff>:/images/images/save.png</iconset>
+   </property>
+   <property name="text">
+    <string>Сохранить проект</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+S</string>
+   </property>
+  </action>
+  <action name="saveProjectAs">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/images/images/saveas.png</normaloff>:/images/images/saveas.png</iconset>
+   </property>
+   <property name="text">
+    <string>Сохранить проект как...</string>
+   </property>
+  </action>
+  <action name="closeProject">
+   <property name="text">
+    <string>Закрыть проект</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+W</string>
+   </property>
+  </action>
+  <action name="quitProg">
+   <property name="text">
+    <string>Выход</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Q</string>
+   </property>
+  </action>
+  <action name="runMachine">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/images/images/start.png</normaloff>:/images/images/start.png</iconset>
+   </property>
+   <property name="text">
+    <string>Запустить</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+R</string>
+   </property>
+  </action>
+  <action name="startDebug">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/images/images/stepbystep.png</normaloff>:/images/images/stepbystep.png</iconset>
+   </property>
+   <property name="text">
+    <string>Начать отладку</string>
+   </property>
+   <property name="shortcut">
+    <string>F5</string>
+   </property>
+  </action>
+  <action name="stopMachine">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/images/images/Stop.png</normaloff>:/images/images/Stop.png</iconset>
+   </property>
+   <property name="text">
+    <string>Остановить</string>
+   </property>
+  </action>
+  <action name="nextState">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/images/images/arrow-step-over-icon.png</normaloff>:/images/images/arrow-step-over-icon.png</iconset>
+   </property>
+   <property name="text">
+    <string>Следующее состояние</string>
+   </property>
+   <property name="shortcut">
+    <string>F10</string>
+   </property>
+  </action>
+  <action name="helpContents">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/images/images/help.png</normaloff>:/images/images/help.png</iconset>
+   </property>
+   <property name="text">
+    <string>Содержание</string>
+   </property>
+   <property name="shortcut">
+    <string>F1</string>
+   </property>
+  </action>
+  <action name="aboutProg">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/images/images/about.png</normaloff>:/images/images/about.png</iconset>
+   </property>
+   <property name="text">
+    <string>О программе...</string>
+   </property>
+  </action>
+  <action name="undoAction">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/images/images/undo.png</normaloff>:/images/images/undo.png</iconset>
+   </property>
+   <property name="text">
+    <string>Отменить действие</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Z</string>
+   </property>
+  </action>
+  <action name="redoAction">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/images/images/redo.png</normaloff>:/images/images/redo.png</iconset>
+   </property>
+   <property name="text">
+    <string>Повторить действие</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Y</string>
+   </property>
+  </action>
+  <action name="cutAction">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/images/images/cut.png</normaloff>:/images/images/cut.png</iconset>
+   </property>
+   <property name="text">
+    <string>Вырезать</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+X</string>
+   </property>
+  </action>
+  <action name="copyAction">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/images/images/copy.png</normaloff>:/images/images/copy.png</iconset>
+   </property>
+   <property name="text">
+    <string>Копировать</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+C</string>
+   </property>
+  </action>
+  <action name="pasteAction">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/images/images/paste.png</normaloff>:/images/images/paste.png</iconset>
+   </property>
+   <property name="text">
+    <string>Вставить</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+V</string>
+   </property>
+  </action>
+  <action name="addColumn">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/images/images/table-insert-column.png</normaloff>:/images/images/table-insert-column.png</iconset>
+   </property>
+   <property name="text">
+    <string>Добавить столбец...</string>
+   </property>
+  </action>
+  <action name="removeColumn">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/images/images/table-delete-column.png</normaloff>:/images/images/table-delete-column.png</iconset>
+   </property>
+   <property name="text">
+    <string>Удалить столбец</string>
+   </property>
+  </action>
+  <action name="addRow">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/images/images/table-insert-row.png</normaloff>:/images/images/table-insert-row.png</iconset>
+   </property>
+   <property name="text">
+    <string>Добавить строку</string>
+   </property>
+  </action>
+  <action name="removeRow">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/images/images/table-delete-row.png</normaloff>:/images/images/table-delete-row.png</iconset>
+   </property>
+   <property name="text">
+    <string>Удалить строку</string>
+   </property>
+  </action>
+  <action name="insertCommand">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/images/images/task--arrow.png</normaloff>:/images/images/task--arrow.png</iconset>
+   </property>
+   <property name="text">
+    <string>Вставить операцию...</string>
+   </property>
+  </action>
+  <action name="action_46">
+   <property name="text">
+    <string>Добавить ячейки...</string>
+   </property>
+  </action>
+  <action name="action_48">
+   <property name="text">
+    <string>Удалить ячейки</string>
+   </property>
+  </action>
+  <action name="action_51">
+   <property name="text">
+    <string>Заполнить как строку...</string>
+   </property>
+  </action>
+  <action name="action_52">
+   <property name="text">
+    <string>Задать пустой символ...</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
- <resources/>
+ <resources>
+  <include location="resources.qrc"/>
+ </resources>
  <connections/>
 </ui>

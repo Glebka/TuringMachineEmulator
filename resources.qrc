@@ -26,5 +26,11 @@
         <file>images/task--arrow.png</file>
         <file>images/textfield_rename.png</file>
         <file>images/tick.png</file>
+        <file>images/arrow-step-over-icon.png</file>
+        <file>images/redo.png</file>
+        <file>images/undo.png</file>
+        <file>images/copy.png</file>
+        <file>images/cut.png</file>
+        <file>images/paste.png</file>
     </qresource>
 </RCC>
