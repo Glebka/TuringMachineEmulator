@@ -4,21 +4,94 @@
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow),
-    m_code(126),
     m_fs_model(0)
 {
     ui->setupUi(this);
-    /*m_fs_model=new FunctionalSchemeModel();
-    ui->tableView->setModel(m_fs_model);
-    ui->tableView->horizontalHeader()->setSectionsMovable(true);
+    prepareUI();
+    m_clipboard=QApplication::clipboard();
+    connect(&m_undo_group,&QUndoGroup::cleanChanged,this,&MainWindow::onCleanStateChanged);
+    connect(m_clipboard,&QClipboard::changed,this,&MainWindow::onClipboardChanged);
+    m_fs_model=new FunctionalSchemeModel();
+    ui->functionalSchemeView->setModel(m_fs_model);
+    ui->functionalSchemeView->horizontalHeader()->setSectionsMovable(true);
     m_alphabet=new AlphabetModel(m_fs_model);
-    ui->tableView_2->setModel(m_alphabet);*/
+    ui->alphabetView->setModel(m_alphabet);
+    //m_fs_model->appendCharColumn('0');
+    TuringIO::loadFunctionalSchemeFromFile(m_fs_model,"test2.mts");
     //connect(m_fs_model,&FunctionalSchemeModel::cellAboutToBeUpdated,this,&MainWindow::onCellAboutToBeUpdated);
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+void MainWindow::onFocusChanged(QWidget *old, QWidget *now)
+{
+    Q_UNUSED(old);
+    if(!now)
+        return;
+    if(now==ui->functionalSchemeView)
+        m_undo_group.setActiveStack(&m_undo_fs);
+    if(now==ui->tapeView)
+        m_undo_group.setActiveStack(&m_undo_tape);
+}
+
+void MainWindow::onCleanStateChanged(bool clean)
+{
+    Q_UNUSED(clean);
+    bool all_clean=true;
+    foreach(QUndoStack * stack,m_undo_group.stacks())
+    {
+        if(!stack->isClean())
+        {
+            all_clean=false;
+            break;
+        }
+    }
+    if(all_clean)
+        qDebug()<<"Saved state";
+    else
+        qDebug()<<"Unsaved state";
+}
+
+void MainWindow::onClipboardChanged(QClipboard::Mode mode)
+{
+
+}
+
+void MainWindow::prepareUI()
+{
+    QVBoxLayout * mainLayout=new QVBoxLayout();
+    mainLayout->setMargin(2);
+    mainLayout->setSpacing(0);
+    mainLayout->addWidget(ui->splitter_2);
+    ui->centralWidget->setLayout(mainLayout);
+    ui->splitter_2->setStretchFactor(0,8);
+    ui->splitter_2->setStretchFactor(1,3);
+    ui->splitter->setStretchFactor(0,1);
+    ui->splitter->setStretchFactor(0,1);
+    QVBoxLayout * tapeLayout=new QVBoxLayout();
+    tapeLayout->setMargin(2);
+    tapeLayout->setSpacing(0);
+    tapeLayout->addWidget(ui->tapeView);
+    ui->tabTape->setLayout(tapeLayout);
+    QVBoxLayout * errorsLayout=new QVBoxLayout();
+    errorsLayout->setMargin(2);
+    errorsLayout->setSpacing(0);
+    errorsLayout->addWidget(ui->errorsView);
+    ui->tabErrors->setLayout(errorsLayout);
+    ui->tabWidget->setTabText(0,tr("Лента"));
+    ui->tabWidget->setTabText(1,tr("Ошибки"));
+    QAction * m_undo_action=m_undo_group.createUndoAction(this,tr("Отменить действие"));
+    m_undo_action->setIcon(QIcon(":/images/undo.png"));
+    QAction * m_redo_action=m_undo_group.createRedoAction(this,tr("Повторить действие"));
+    m_redo_action->setIcon(QIcon(":/images/redo.png"));
+    QList<QAction *> list;
+    list<<m_undo_action<<m_redo_action;
+    ui->mnuEdit->insertActions(ui->mnuEdit->actions().first(),list);
+    m_undo_group.addStack(&m_undo_fs);
+    m_undo_group.addStack(&m_undo_tape);
 }
 /*
 void MainWindow::on_pushButton_clicked()
@@ -63,3 +136,15 @@ void MainWindow::on_pushButton_6_clicked()
 {
     m_undo_stack.redo();
 }*/
+
+
+void MainWindow::showEvent(QShowEvent *e)
+{
+    e->accept();
+}
+
+
+void MainWindow::resizeEvent(QResizeEvent *e)
+{
+
+}

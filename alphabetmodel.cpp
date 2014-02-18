@@ -13,6 +13,7 @@ AlphabetModel::AlphabetModel(FunctionalSchemeModel *fs, QObject *parent) :
 
 void AlphabetModel::on_fs_column_inserted(const QModelIndex &parent, int start, int end)
 {
+    Q_UNUSED(parent);
     int count=end-start+1;
     beginInsertRows(QModelIndex(),rowCount(QModelIndex()),rowCount(QModelIndex())+count-1);
     m_alphabet=m_fs_model->getAlphabetAsString();
@@ -22,6 +23,7 @@ void AlphabetModel::on_fs_column_inserted(const QModelIndex &parent, int start, 
 
 void AlphabetModel::on_fs_column_removed(const QModelIndex &parent, int start, int end)
 {
+    Q_UNUSED(parent);
     beginRemoveRows(QModelIndex(),start,end);
     m_alphabet=m_fs_model->getAlphabetAsString();
     qSort(m_alphabet.begin(),m_alphabet.end());
@@ -37,11 +39,13 @@ void AlphabetModel::on_fs_reset()
 
 int AlphabetModel::rowCount(const QModelIndex &parent) const
 {
+    Q_UNUSED(parent);
     return m_alphabet.length();
 }
 
 int AlphabetModel::columnCount(const QModelIndex &parent) const
 {
+    Q_UNUSED(parent);
     return 2;
 }
 

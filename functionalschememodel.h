@@ -10,7 +10,7 @@ class FunctionalSchemeModel : public QStandardItemModel
     Q_OBJECT
 public:
     explicit FunctionalSchemeModel(QObject *parent = 0);
-    bool insertCharColumn(QChar c);
+    bool appendCharColumn(QChar c);
     QString getAlphabetAsString();
 signals:
     void cellAboutToBeUpdated(const QModelIndex &index,QString oldtext,QString newtext);

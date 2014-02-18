@@ -6,42 +6,150 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>632</width>
-    <height>432</height>
+    <width>747</width>
+    <height>501</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <widget class="QTableView" name="tableView">
+   <widget class="QSplitter" name="splitter_2">
     <property name="geometry">
      <rect>
-      <x>50</x>
-      <y>150</y>
-      <width>151</width>
-      <height>101</height>
+      <x>40</x>
+      <y>20</y>
+      <width>516</width>
+      <height>331</height>
      </rect>
     </property>
-    <property name="dragEnabled">
-     <bool>false</bool>
+    <property name="orientation">
+     <enum>Qt::Vertical</enum>
     </property>
-    <property name="dragDropMode">
-     <enum>QAbstractItemView::NoDragDrop</enum>
-    </property>
-    <property name="wordWrap">
-     <bool>false</bool>
-    </property>
-   </widget>
-   <widget class="QTableView" name="tableView_2">
-    <property name="geometry">
-     <rect>
-      <x>240</x>
-      <y>211</y>
-      <width>201</width>
-      <height>151</height>
-     </rect>
-    </property>
+    <widget class="QSplitter" name="splitter">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Expanding" vsizetype="Maximum">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <widget class="QWidget" name="layoutWidget">
+      <layout class="QVBoxLayout" name="verticalLayout">
+       <item>
+        <widget class="QLabel" name="label">
+         <property name="text">
+          <string>Функциональная схема</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QTableView" name="functionalSchemeView">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="dragEnabled">
+          <bool>false</bool>
+         </property>
+         <property name="dragDropMode">
+          <enum>QAbstractItemView::NoDragDrop</enum>
+         </property>
+         <property name="wordWrap">
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="layoutWidget">
+      <layout class="QVBoxLayout" name="verticalLayout_2" stretch="0,0">
+       <property name="sizeConstraint">
+        <enum>QLayout::SetDefaultConstraint</enum>
+       </property>
+       <item>
+        <widget class="QLabel" name="label_2">
+         <property name="text">
+          <string>Алфавит</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QTableView" name="alphabetView">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>0</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+    <widget class="QTabWidget" name="tabWidget">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="currentIndex">
+      <number>0</number>
+     </property>
+     <widget class="QWidget" name="tabTape">
+      <attribute name="title">
+       <string>Tab 1</string>
+      </attribute>
+      <widget class="QTableView" name="tapeView">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>10</y>
+         <width>491</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+         <horstretch>1</horstretch>
+         <verstretch>1</verstretch>
+        </sizepolicy>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QWidget" name="tabErrors">
+      <attribute name="title">
+       <string>Tab 2</string>
+      </attribute>
+      <widget class="QTreeView" name="errorsView">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>10</y>
+         <width>491</width>
+         <height>41</height>
+        </rect>
+       </property>
+      </widget>
+     </widget>
+    </widget>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
@@ -49,11 +157,11 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>632</width>
+     <width>747</width>
      <height>23</height>
     </rect>
    </property>
-   <widget class="QMenu" name="menuAfqk">
+   <widget class="QMenu" name="mnuFile">
     <property name="title">
      <string>Файл</string>
     </property>
@@ -68,7 +176,7 @@
     <addaction name="separator"/>
     <addaction name="quitProg"/>
    </widget>
-   <widget class="QMenu" name="menu_3">
+   <widget class="QMenu" name="mnuRunDebug">
     <property name="title">
      <string>Запуск и отладка</string>
     </property>
@@ -79,18 +187,18 @@
     <addaction name="separator"/>
     <addaction name="nextState"/>
    </widget>
-   <widget class="QMenu" name="menu_4">
+   <widget class="QMenu" name="mnuHelp">
     <property name="title">
      <string>Справка</string>
     </property>
     <addaction name="helpContents"/>
     <addaction name="aboutProg"/>
    </widget>
-   <widget class="QMenu" name="menu_5">
+   <widget class="QMenu" name="mnuEdit">
     <property name="title">
      <string>Правка</string>
     </property>
-    <widget class="QMenu" name="menu_6">
+    <widget class="QMenu" name="mnuFS">
      <property name="title">
       <string>Функциональная схема</string>
      </property>
@@ -102,44 +210,62 @@
      <addaction name="separator"/>
      <addaction name="insertCommand"/>
     </widget>
-    <widget class="QMenu" name="menu_7">
+    <widget class="QMenu" name="mnuTape">
      <property name="title">
       <string>Лента</string>
      </property>
-     <addaction name="action_46"/>
-     <addaction name="action_48"/>
+     <addaction name="addCells"/>
+     <addaction name="removeCells"/>
      <addaction name="separator"/>
-     <addaction name="action_51"/>
-     <addaction name="action_52"/>
+     <addaction name="fillString"/>
+     <addaction name="setEmptyChar"/>
     </widget>
-    <addaction name="undoAction"/>
-    <addaction name="redoAction"/>
     <addaction name="separator"/>
-    <addaction name="menu_6"/>
-    <addaction name="menu_7"/>
+    <addaction name="mnuFS"/>
+    <addaction name="mnuTape"/>
     <addaction name="separator"/>
     <addaction name="cutAction"/>
     <addaction name="copyAction"/>
     <addaction name="pasteAction"/>
    </widget>
-   <addaction name="menuAfqk"/>
-   <addaction name="menu_5"/>
-   <addaction name="menu_3"/>
-   <addaction name="menu_4"/>
+   <addaction name="mnuFile"/>
+   <addaction name="mnuEdit"/>
+   <addaction name="mnuRunDebug"/>
+   <addaction name="mnuHelp"/>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
+   <property name="iconSize">
+    <size>
+     <width>16</width>
+     <height>16</height>
+    </size>
+   </property>
    <attribute name="toolBarArea">
     <enum>TopToolBarArea</enum>
    </attribute>
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
+   <addaction name="addColumn"/>
+   <addaction name="removeColumn"/>
+   <addaction name="addRow"/>
+   <addaction name="removeRow"/>
+   <addaction name="insertCommand"/>
+   <addaction name="separator"/>
+   <addaction name="addCells"/>
+   <addaction name="removeCells"/>
+   <addaction name="fillString"/>
+   <addaction name="separator"/>
+   <addaction name="runMachine"/>
+   <addaction name="stopMachine"/>
+   <addaction name="startDebug"/>
+   <addaction name="nextState"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
   <action name="createProject">
    <property name="icon">
     <iconset resource="resources.qrc">
-     <normaloff>:/images/images/new_project.png</normaloff>:/images/images/new_project.png</iconset>
+     <normaloff>:/images/new_project.png</normaloff>:/images/new_project.png</iconset>
    </property>
    <property name="text">
     <string>Создать проект...</string>
@@ -151,7 +277,7 @@
   <action name="openProject">
    <property name="icon">
     <iconset resource="resources.qrc">
-     <normaloff>:/images/images/open.png</normaloff>:/images/images/open.png</iconset>
+     <normaloff>:/images/open.png</normaloff>:/images/open.png</iconset>
    </property>
    <property name="text">
     <string>Открыть проект...</string>
@@ -168,7 +294,7 @@
   <action name="saveProject">
    <property name="icon">
     <iconset resource="resources.qrc">
-     <normaloff>:/images/images/save.png</normaloff>:/images/images/save.png</iconset>
+     <normaloff>:/images/save.png</normaloff>:/images/save.png</iconset>
    </property>
    <property name="text">
     <string>Сохранить проект</string>
@@ -180,7 +306,7 @@
   <action name="saveProjectAs">
    <property name="icon">
     <iconset resource="resources.qrc">
-     <normaloff>:/images/images/saveas.png</normaloff>:/images/images/saveas.png</iconset>
+     <normaloff>:/images/saveas.png</normaloff>:/images/saveas.png</iconset>
    </property>
    <property name="text">
     <string>Сохранить проект как...</string>
@@ -205,7 +331,7 @@
   <action name="runMachine">
    <property name="icon">
     <iconset resource="resources.qrc">
-     <normaloff>:/images/images/start.png</normaloff>:/images/images/start.png</iconset>
+     <normaloff>:/images/start.png</normaloff>:/images/start.png</iconset>
    </property>
    <property name="text">
     <string>Запустить</string>
@@ -217,7 +343,7 @@
   <action name="startDebug">
    <property name="icon">
     <iconset resource="resources.qrc">
-     <normaloff>:/images/images/stepbystep.png</normaloff>:/images/images/stepbystep.png</iconset>
+     <normaloff>:/images/stepbystep.png</normaloff>:/images/stepbystep.png</iconset>
    </property>
    <property name="text">
     <string>Начать отладку</string>
@@ -229,7 +355,7 @@
   <action name="stopMachine">
    <property name="icon">
     <iconset resource="resources.qrc">
-     <normaloff>:/images/images/Stop.png</normaloff>:/images/images/Stop.png</iconset>
+     <normaloff>:/images/Stop.png</normaloff>:/images/Stop.png</iconset>
    </property>
    <property name="text">
     <string>Остановить</string>
@@ -238,7 +364,7 @@
   <action name="nextState">
    <property name="icon">
     <iconset resource="resources.qrc">
-     <normaloff>:/images/images/arrow-step-over-icon.png</normaloff>:/images/images/arrow-step-over-icon.png</iconset>
+     <normaloff>:/images/arrow-step-over-icon.png</normaloff>:/images/arrow-step-over-icon.png</iconset>
    </property>
    <property name="text">
     <string>Следующее состояние</string>
@@ -250,7 +376,7 @@
   <action name="helpContents">
    <property name="icon">
     <iconset resource="resources.qrc">
-     <normaloff>:/images/images/help.png</normaloff>:/images/images/help.png</iconset>
+     <normaloff>:/images/help.png</normaloff>:/images/help.png</iconset>
    </property>
    <property name="text">
     <string>Содержание</string>
@@ -262,7 +388,7 @@
   <action name="aboutProg">
    <property name="icon">
     <iconset resource="resources.qrc">
-     <normaloff>:/images/images/about.png</normaloff>:/images/images/about.png</iconset>
+     <normaloff>:/images/about.png</normaloff>:/images/about.png</iconset>
    </property>
    <property name="text">
     <string>О программе...</string>
@@ -271,7 +397,7 @@
   <action name="undoAction">
    <property name="icon">
     <iconset resource="resources.qrc">
-     <normaloff>:/images/images/undo.png</normaloff>:/images/images/undo.png</iconset>
+     <normaloff>:/images/undo.png</normaloff>:/images/undo.png</iconset>
    </property>
    <property name="text">
     <string>Отменить действие</string>
@@ -283,7 +409,7 @@
   <action name="redoAction">
    <property name="icon">
     <iconset resource="resources.qrc">
-     <normaloff>:/images/images/redo.png</normaloff>:/images/images/redo.png</iconset>
+     <normaloff>:/images/redo.png</normaloff>:/images/redo.png</iconset>
    </property>
    <property name="text">
     <string>Повторить действие</string>
@@ -295,7 +421,7 @@
   <action name="cutAction">
    <property name="icon">
     <iconset resource="resources.qrc">
-     <normaloff>:/images/images/cut.png</normaloff>:/images/images/cut.png</iconset>
+     <normaloff>:/images/cut.png</normaloff>:/images/cut.png</iconset>
    </property>
    <property name="text">
     <string>Вырезать</string>
@@ -307,7 +433,7 @@
   <action name="copyAction">
    <property name="icon">
     <iconset resource="resources.qrc">
-     <normaloff>:/images/images/copy.png</normaloff>:/images/images/copy.png</iconset>
+     <normaloff>:/images/copy.png</normaloff>:/images/copy.png</iconset>
    </property>
    <property name="text">
     <string>Копировать</string>
@@ -319,7 +445,7 @@
   <action name="pasteAction">
    <property name="icon">
     <iconset resource="resources.qrc">
-     <normaloff>:/images/images/paste.png</normaloff>:/images/images/paste.png</iconset>
+     <normaloff>:/images/paste.png</normaloff>:/images/paste.png</iconset>
    </property>
    <property name="text">
     <string>Вставить</string>
@@ -331,7 +457,7 @@
   <action name="addColumn">
    <property name="icon">
     <iconset resource="resources.qrc">
-     <normaloff>:/images/images/table-insert-column.png</normaloff>:/images/images/table-insert-column.png</iconset>
+     <normaloff>:/images/table-insert-column.png</normaloff>:/images/table-insert-column.png</iconset>
    </property>
    <property name="text">
     <string>Добавить столбец...</string>
@@ -340,7 +466,7 @@
   <action name="removeColumn">
    <property name="icon">
     <iconset resource="resources.qrc">
-     <normaloff>:/images/images/table-delete-column.png</normaloff>:/images/images/table-delete-column.png</iconset>
+     <normaloff>:/images/table-delete-column.png</normaloff>:/images/table-delete-column.png</iconset>
    </property>
    <property name="text">
     <string>Удалить столбец</string>
@@ -349,7 +475,7 @@
   <action name="addRow">
    <property name="icon">
     <iconset resource="resources.qrc">
-     <normaloff>:/images/images/table-insert-row.png</normaloff>:/images/images/table-insert-row.png</iconset>
+     <normaloff>:/images/table-insert-row.png</normaloff>:/images/table-insert-row.png</iconset>
    </property>
    <property name="text">
     <string>Добавить строку</string>
@@ -358,7 +484,7 @@
   <action name="removeRow">
    <property name="icon">
     <iconset resource="resources.qrc">
-     <normaloff>:/images/images/table-delete-row.png</normaloff>:/images/images/table-delete-row.png</iconset>
+     <normaloff>:/images/table-delete-row.png</normaloff>:/images/table-delete-row.png</iconset>
    </property>
    <property name="text">
     <string>Удалить строку</string>
@@ -367,28 +493,40 @@
   <action name="insertCommand">
    <property name="icon">
     <iconset resource="resources.qrc">
-     <normaloff>:/images/images/task--arrow.png</normaloff>:/images/images/task--arrow.png</iconset>
+     <normaloff>:/images/task--arrow.png</normaloff>:/images/task--arrow.png</iconset>
    </property>
    <property name="text">
     <string>Вставить операцию...</string>
    </property>
   </action>
-  <action name="action_46">
+  <action name="addCells">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/images/insert_table_row.png</normaloff>:/images/insert_table_row.png</iconset>
+   </property>
    <property name="text">
     <string>Добавить ячейки...</string>
    </property>
   </action>
-  <action name="action_48">
+  <action name="removeCells">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/images/delete_table_row.png</normaloff>:/images/delete_table_row.png</iconset>
+   </property>
    <property name="text">
     <string>Удалить ячейки</string>
    </property>
   </action>
-  <action name="action_51">
+  <action name="fillString">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/images/1392329920_edit-clear.png</normaloff>:/images/1392329920_edit-clear.png</iconset>
+   </property>
    <property name="text">
     <string>Заполнить как строку...</string>
    </property>
   </action>
-  <action name="action_52">
+  <action name="setEmptyChar">
    <property name="text">
     <string>Задать пустой символ...</string>
    </property>

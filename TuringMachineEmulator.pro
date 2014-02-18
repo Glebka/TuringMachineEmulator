@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT       += core gui xml
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -16,13 +16,17 @@ SOURCES += main.cpp\
         mainwindow.cpp \
     functionalschememodel.cpp \
     alphabetmodel.cpp \
-    commands.cpp
+    commands.cpp \
+    tapemodel.cpp \
+    TuringIO.cpp
 
 HEADERS  += mainwindow.h \
     common.h \
     functionalschememodel.h \
     alphabetmodel.h \
-    commands.h
+    commands.h \
+    tapemodel.h \
+    TuringIO.h
 
 FORMS    += mainwindow.ui
 

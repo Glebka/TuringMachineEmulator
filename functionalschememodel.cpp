@@ -7,12 +7,14 @@ FunctionalSchemeModel::FunctionalSchemeModel(QObject *parent) :
     m_regexp.setPattern("^q[0-9]+\\s[\\x21-\\x7e]\\s[SRL]$");
     m_regexp_cap.setCaseSensitivity(Qt::CaseSensitive);
     m_regexp_cap.setPattern("^(q[0-9]+)\\s([\\x21-\\x7e])\\s([SRL])$");
+    m_header="";
 }
 
-bool FunctionalSchemeModel::insertCharColumn(QChar c)
+bool FunctionalSchemeModel::appendCharColumn(QChar c)
 {
-    if(m_header.contains(c)||c.toLatin1()<33||c.toLatin1()>126)
-        return false;
+    if(!m_header.isEmpty())
+        if(m_header.contains(c)||c.toLatin1()<33||c.toLatin1()>126)
+            return false;
     m_header.append(c);
     insertColumn(columnCount(QModelIndex()));
     return true;
@@ -89,7 +91,6 @@ bool FunctionalSchemeModel::removeColumns(int column, int count, const QModelInd
     m_header.remove(column,count);
     return QStandardItemModel::removeColumns(column,count,parent);
 }
-
 
 bool FunctionalSchemeModel::setData(const QModelIndex &index, const QVariant &value, int role)
 {
