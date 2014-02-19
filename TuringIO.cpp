@@ -21,6 +21,55 @@ bool TuringIO::loadFunctionalSchemeFromFile(FunctionalSchemeModel *model, QStrin
     return false;
 }
 
+bool TuringIO::loadTapeFromFile(TapeModel *model, QString fileName)
+{
+    QFile tape_file(fileName);
+    if(!tape_file.open(QFile::ReadOnly|QFile::Text))
+    {
+        QMessageBox::warning(0, QObject::tr("Эмулятор машины Тьюринга"),
+                             QObject::tr("Cannot read file %1:\n%2.")
+                             .arg(fileName)
+                             .arg(tape_file.errorString()));
+        return false;
+    }
+    QTextStream stream(&tape_file);
+    QString header=stream.readLine(100);
+    stream.seek(0);
+    if(header.contains("<?xml"))
+        return tapeFromXML(model,tape_file);
+    else
+        if(header=="MTLine")
+            return tapeFromText(model,tape_file);
+        else
+            return false;
+}
+
+bool TuringIO::tapeFromXML(TapeModel *model, QFile &file)
+{
+    QDomDocument doc;
+    doc.setContent(&file);
+    QDomElement tape=doc.firstChild().toElement();
+    model->setString(tape.attribute("string"));
+    model->setStartPos(atoi(tape.attribute("start","0").toStdString().c_str()));
+    QString emptyChar=tape.attribute("EmptyChar");
+    if(!emptyChar.isEmpty())
+        model->setEmptyChar(emptyChar.at(0));
+    return true;
+}
+
+bool TuringIO::tapeFromText(TapeModel *model, QFile &file)
+{
+    QTextStream stream(&file);
+    stream.readLine();
+    if(stream.atEnd())
+        return false;
+    model->setString(stream.readLine(1024*1204));
+    if(stream.atEnd())
+        return false;
+    model->setStartPos(atoi(stream.readLine(10).toStdString().c_str()));
+    return true;
+}
+
 
 FunctionalSchemeReader::FunctionalSchemeReader(FunctionalSchemeModel *model)
     : m_model(model)

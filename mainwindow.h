@@ -54,6 +54,7 @@ private:
     QClipboard * m_clipboard;
 
     FunctionalSchemeModel * m_fs_model;
+    TapeModel * m_tape_model;
     AlphabetModel * m_alphabet;
 
     // QWidget interface

@@ -7,9 +7,11 @@
 #include <QXmlDefaultHandler>
 #include <QXmlSimpleReader>
 #include <QXmlInputSource>
+#include <QDomDocument>
 #include <QMap>
 #include <QStack>
 #include <QMessageBox>
+#include <QTextStream>
 #include <QDebug>
 
 #include <functionalschememodel.h>
@@ -50,11 +52,14 @@ class TuringIO
 {
 public:
     static bool loadFunctionalSchemeFromFile(FunctionalSchemeModel * model, QString fileName);
-    static bool loadTapeFromFile(TapeModel * model,QString file);
+    static bool loadTapeFromFile(TapeModel * model, QString fileName);
     static bool loadMachineFromFile(FunctionalSchemeModel * fs_model, TapeModel * tape_model,QString file);
     static bool saveFunctionalSchemeToFile(FunctionalSchemeModel * model,QString file);
     static bool saveTapeToFile(TapeModel * model,QString file);
     static bool saveMachineToFile(FunctionalSchemeModel * fs_model, TapeModel * tape_model,QString file);
+private:
+    static bool tapeFromXML(TapeModel * model,QFile & file);
+    static bool tapeFromText(TapeModel * model,QFile & file);
 };
 
 #endif // TURINGIO_H

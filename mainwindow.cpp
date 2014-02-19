@@ -4,7 +4,8 @@
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow),
-    m_fs_model(0)
+    m_fs_model(0),
+    m_tape_model(0)
 {
     ui->setupUi(this);
     prepareUI();
@@ -12,12 +13,19 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(&m_undo_group,&QUndoGroup::cleanChanged,this,&MainWindow::onCleanStateChanged);
     connect(m_clipboard,&QClipboard::changed,this,&MainWindow::onClipboardChanged);
     m_fs_model=new FunctionalSchemeModel();
+    m_tape_model=new TapeModel();
+
     ui->functionalSchemeView->setModel(m_fs_model);
     ui->functionalSchemeView->horizontalHeader()->setSectionsMovable(true);
+
+    ui->tapeView->setModel(m_tape_model);
+    ui->tapeView->horizontalHeader()->setDefaultSectionSize(25);
+
     m_alphabet=new AlphabetModel(m_fs_model);
     ui->alphabetView->setModel(m_alphabet);
     //m_fs_model->appendCharColumn('0');
     TuringIO::loadFunctionalSchemeFromFile(m_fs_model,"test2.mts");
+    TuringIO::loadTapeFromFile(m_tape_model,"test2.mtl");
     //connect(m_fs_model,&FunctionalSchemeModel::cellAboutToBeUpdated,this,&MainWindow::onCellAboutToBeUpdated);
 }
 
