@@ -9,6 +9,9 @@
 #include <QResizeEvent>
 #include <QUndoGroup>
 #include <QClipboard>
+#include <QMessageBox>
+#include <QFileDialog>
+#include <QFileInfo>
 
 #include "functionalschememodel.h"
 #include "alphabetmodel.h"
@@ -61,6 +64,9 @@ private:
 protected:
     virtual void showEvent(QShowEvent *e);
     virtual void resizeEvent(QResizeEvent *e);
+private slots:
+    void on_openProject_triggered();
+    void on_saveProjectAs_triggered();
 };
 
 #endif // MAINWINDOW_H

@@ -24,8 +24,11 @@ MainWindow::MainWindow(QWidget *parent) :
     m_alphabet=new AlphabetModel(m_fs_model);
     ui->alphabetView->setModel(m_alphabet);
     //m_fs_model->appendCharColumn('0');
-    TuringIO::loadFunctionalSchemeFromFile(m_fs_model,"test2.mts");
-    TuringIO::loadTapeFromFile(m_tape_model,"test2.mtl");
+    //if(!TuringIO::loadMachineFromFile(m_fs_model,m_tape_model,"+1/PlusOne.mtp"))
+    //    QMessageBox::warning(this,tr("Эмулятор машины Тьюринга"),TuringIO::getLastError());
+    //ui->tapeView->sec
+    //TuringIO::loadFunctionalSchemeFromFile(m_fs_model,"test2.mts");
+    //TuringIO::loadTapeFromFile(m_tape_model,"test2.mtl");
     //connect(m_fs_model,&FunctionalSchemeModel::cellAboutToBeUpdated,this,&MainWindow::onCellAboutToBeUpdated);
 }
 
@@ -155,4 +158,42 @@ void MainWindow::showEvent(QShowEvent *e)
 void MainWindow::resizeEvent(QResizeEvent *e)
 {
 
+}
+
+void MainWindow::on_openProject_triggered()
+{
+    QString filename=QFileDialog::getOpenFileName(this,tr("Открыть проект..."),"","Файлы проекта МТ (*.mtp)");
+    if(filename.isEmpty())
+        return;
+    FunctionalSchemeModel * fs_model=new FunctionalSchemeModel();
+    TapeModel * tape_model=new TapeModel();
+    AlphabetModel * alphabet_model=new AlphabetModel(fs_model);
+    if(!TuringIO::loadMachineFromFile(fs_model,tape_model,filename))
+    {
+        delete fs_model;
+        delete tape_model;
+        goto error;
+    }
+
+    ui->functionalSchemeView->setModel(fs_model);
+    ui->tapeView->setModel(tape_model);
+    ui->alphabetView->setModel(alphabet_model);
+    delete m_fs_model;
+    delete m_tape_model;
+    delete m_alphabet;
+    m_fs_model=fs_model;
+    m_tape_model=tape_model;
+    m_alphabet=alphabet_model;
+    return;
+    error:
+        QMessageBox::warning(this,tr("Эмулятор машины Тьюринга"),TuringIO::getLastError());
+}
+
+void MainWindow::on_saveProjectAs_triggered()
+{
+    QString filename=QFileDialog::getSaveFileName(this,tr("Сохранить проект как..."),"","Файлы проекта МТ (*.mtp)");
+    if(filename.isEmpty())
+        return;
+    if(!TuringIO::saveProjectFile(filename,QString(),QString(),TuringIO::Default,true))
+        QMessageBox::warning(this,tr("Эмулятор машины Тьюринга"),TuringIO::getLastError());
 }

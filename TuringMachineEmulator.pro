@@ -32,3 +32,4 @@ FORMS    += mainwindow.ui
 
 RESOURCES += \
     resources.qrc
+CCFLAG = -std=c++11 -O0 -ggdb3 -Wall -Wextra -pedantic
