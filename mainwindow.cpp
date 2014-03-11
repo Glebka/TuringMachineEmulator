@@ -174,7 +174,6 @@ void MainWindow::on_openProject_triggered()
         delete tape_model;
         goto error;
     }
-
     ui->functionalSchemeView->setModel(fs_model);
     ui->tapeView->setModel(tape_model);
     ui->alphabetView->setModel(alphabet_model);
@@ -194,6 +193,10 @@ void MainWindow::on_saveProjectAs_triggered()
     QString filename=QFileDialog::getSaveFileName(this,tr("Сохранить проект как..."),"","Файлы проекта МТ (*.mtp)");
     if(filename.isEmpty())
         return;
-    if(!TuringIO::saveProjectFile(filename,QString(),QString(),TuringIO::Default,true))
+    if(!TuringIO::saveProjectFile(filename,QString(),QString(),TuringIO::Compatibility_v2))
+        QMessageBox::warning(this,tr("Эмулятор машины Тьюринга"),TuringIO::getLastError());
+    if(!TuringIO::saveFunctionalSchemeToFile(m_fs_model,QString(),TuringIO::Compatibility_v2))
+        QMessageBox::warning(this,tr("Эмулятор машины Тьюринга"),TuringIO::getLastError());
+    if(!TuringIO::saveTapeToFile(m_tape_model,QString(),TuringIO::Compatibility_v2))
         QMessageBox::warning(this,tr("Эмулятор машины Тьюринга"),TuringIO::getLastError());
 }

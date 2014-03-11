@@ -26,7 +26,10 @@ bool TapeModel::appendCells(QChar c, int count)
 
 QString TapeModel::toString()
 {
-    return QString();
+    QString tape;
+    for(int i=0;i<columnCount();i++)
+        tape.append(data(index(0,i),Qt::DisplayRole).toString().at(0));
+    return tape;
 }
 
 void TapeModel::setString(QString s)

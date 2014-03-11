@@ -1,6 +1,7 @@
 #ifndef TURINGIO_H
 #define TURINGIO_H
 
+#include <QTemporaryFile>
 #include <QDir>
 #include <QFile>
 #include <QFileInfo>
@@ -58,9 +59,9 @@ public:
     static bool loadTapeFromFile(TapeModel * model, QString fileName);
     static bool loadMachineFromFile(FunctionalSchemeModel * fs_model, TapeModel * tape_model,QString fileName);
 
-    static SaveState saveFunctionalSchemeToFile(FunctionalSchemeModel * model,QString fileName, FileFormat format=Default,bool overwrite=false);
-    static SaveState saveTapeToFile(TapeModel * model,QString fileName, FileFormat format=Default,bool overwrite=false);
-    static SaveState saveProjectFile(QString fileName,QString fsFile=QString(),QString tapeFile=QString(), FileFormat format=Default,bool overwrite=false);
+    static bool saveFunctionalSchemeToFile(FunctionalSchemeModel * model,QString fileName=QString(), FileFormat format=Default);
+    static bool saveTapeToFile(TapeModel * model, QString fileName=QString(), FileFormat format=Default);
+    static bool saveProjectFile(QString fileName,QString fsFile=QString(),QString tapeFile=QString(), FileFormat format=Default);
 
     static inline QString getLastError(){return TuringIO::m_last_error;}
     static inline QString getCurrentProjectFile(){return TuringIO::m_project_file;}
@@ -77,11 +78,11 @@ private:
     static bool machineFromText(FunctionalSchemeModel * fs_model, TapeModel * tape_model,QFile & file);
     static bool machineFromXML(FunctionalSchemeModel * fs_model, TapeModel * tape_model,QFile & file);
 
-    static bool functionalSchemeToXml(FunctionalSchemeModel * model, QString fileName);
-    static bool functionalSchemeToText(FunctionalSchemeModel * model, QString fileName);
+    static bool functionalSchemeToXml(FunctionalSchemeModel * model, QFile & file);
+    static bool functionalSchemeToText(FunctionalSchemeModel * model, QFile & file);
 
-    static bool tapeToXml(TapeModel * model, QString fileName);
-    static bool tapeToText(TapeModel * model, QString fileName);
+    static bool tapeToXml(TapeModel * model, QFile & file);
+    static bool tapeToText(TapeModel * model, QFile & file);
     static QString m_last_error;
     static QString m_project_file;
     static QString m_fs_file;
