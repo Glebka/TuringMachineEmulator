@@ -11,6 +11,14 @@ AlphabetModel::AlphabetModel(FunctionalSchemeModel *fs, QObject *parent) :
     connect(m_fs_model,&FunctionalSchemeModel::modelReset,this,&AlphabetModel::on_fs_reset);
 }
 
+QSet<QChar> AlphabetModel::toSet()
+{
+    QSet<QChar> result_set;
+    for(QString::const_iterator it=m_alphabet.cbegin();it!=m_alphabet.cend();it++)
+        result_set.insert(*it);
+    return result_set;
+}
+
 void AlphabetModel::on_fs_column_inserted(const QModelIndex &parent, int start, int end)
 {
     Q_UNUSED(parent);

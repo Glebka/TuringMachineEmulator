@@ -17,6 +17,7 @@
 #include "alphabetmodel.h"
 #include "commands.h"
 #include "TuringIO.h"
+#include "addcolumndialog.h"
 
 namespace Ui {
 class MainWindow;

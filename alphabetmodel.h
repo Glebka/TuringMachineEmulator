@@ -3,12 +3,14 @@
 
 #include <QAbstractTableModel>
 #include <functionalschememodel.h>
+#include <QSet>
 
 class AlphabetModel : public QAbstractTableModel
 {
     Q_OBJECT
 public:
     explicit AlphabetModel(FunctionalSchemeModel * fs,QObject *parent = 0);
+    QSet<QChar> toSet();
 signals:
 
 private slots:

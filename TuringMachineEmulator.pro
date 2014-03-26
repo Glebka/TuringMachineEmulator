@@ -18,7 +18,9 @@ SOURCES += main.cpp\
     alphabetmodel.cpp \
     commands.cpp \
     tapemodel.cpp \
-    TuringIO.cpp
+    TuringIO.cpp \
+    errortablemodel.cpp \
+    addcolumndialog.cpp
 
 HEADERS  += mainwindow.h \
     common.h \
@@ -26,9 +28,12 @@ HEADERS  += mainwindow.h \
     alphabetmodel.h \
     commands.h \
     tapemodel.h \
-    TuringIO.h
+    TuringIO.h \
+    errortablemodel.h \
+    addcolumndialog.h
 
-FORMS    += mainwindow.ui
+FORMS    += mainwindow.ui \
+    addcolumndialog.ui
 
 RESOURCES += \
     resources.qrc

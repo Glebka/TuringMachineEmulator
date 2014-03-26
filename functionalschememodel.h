@@ -4,6 +4,7 @@
 #include <QStandardItemModel>
 #include <QString>
 #include <QRegExp>
+#include <QDebug>
 
 class FunctionalSchemeModel : public QStandardItemModel
 {

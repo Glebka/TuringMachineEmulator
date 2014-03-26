@@ -172,20 +172,22 @@ void MainWindow::on_openProject_triggered()
     {
         delete fs_model;
         delete tape_model;
-        goto error;
+        return;
+        QMessageBox::warning(this,tr("Эмулятор машины Тьюринга"),TuringIO::getLastError());
     }
     ui->functionalSchemeView->setModel(fs_model);
     ui->tapeView->setModel(tape_model);
     ui->alphabetView->setModel(alphabet_model);
+    AddColumnDialog dialog(alphabet_model,fs_model,this);
+    dialog.setModal(true);
+    dialog.exec();
+    qDebug()<<dialog.selectedChar();
     delete m_fs_model;
     delete m_tape_model;
     delete m_alphabet;
     m_fs_model=fs_model;
     m_tape_model=tape_model;
     m_alphabet=alphabet_model;
-    return;
-    error:
-        QMessageBox::warning(this,tr("Эмулятор машины Тьюринга"),TuringIO::getLastError());
 }
 
 void MainWindow::on_saveProjectAs_triggered()
